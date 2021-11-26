@@ -1,0 +1,61 @@
+
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "strgname": {
+            "value": "anithastrbg234tyty"
+        },
+        "skuname": {
+            "value": "Standard_LRS"
+        },
+        "pip": {
+            "value": "mypip"
+        },
+        "piptype": {
+            "value": "Dynamic"
+        },
+        "nsgname": {
+            "value": "mynsg"
+        },
+        "vnetname": {
+            "value": "myvnet"
+        },
+        "addressprefix": {
+            "value": "192.168.0.0/24"
+        },
+        "subnetname": {
+            "value": "subnet1"
+        },
+        "subnet-addressprefix": {
+            "value": "192.168.0.0/29"
+        },
+        "vmname": {
+            "value": "myvm"
+        },
+        "vm-nic": {
+            "value": "nic"
+        },
+        "username": {
+            "value": "ishu"
+        },
+        "size": {
+            "value": "Standard_A2_V2"
+        },
+        "pswd": {
+            "value": "ishanth@2014"
+        },
+        "imagepublisher": {
+            "value": "MicrosoftWindowsServer"
+        },
+        "imageoffer": {
+            "value": "WindowsServer"
+        },
+        "imagesku": {
+            "value": "2019-Datacenter"
+        },
+        "osdiskname": {
+            "value": "PremiumSSD"
+        }
+    }
+}

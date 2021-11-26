@@ -1,0 +1,84 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+
+    "parameters": {
+        "appserplan": {
+            "type": "string",
+            "defaultValue": "anithaaspbnh",
+            "metadata": {
+                "description": "description"
+            }
+        },
+        "skuname": {
+            "type": "string",
+            "defaultValue": "S1",
+            "allowedValues": [
+                "F1",
+                "P1V1",
+                "S1"
+            ],
+            "metadata": {
+                "description": "description"
+            }
+        },
+        "webappname": {
+            "type": "string",
+            "defaultValue":"anithawebapp",
+            "metadata": {
+                "description": "description"
+            }
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "name": "[parameters('appserplan')]",
+            "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2020-12-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "[parameters('skuname')]",
+                "capacity": 1
+            },
+            "tags": {
+                "displayName": "[parameters('appserplan')]"
+            },
+            "properties": {
+                "name": "[parameters('appserplan')]"
+
+            }
+
+        },
+        {
+            "name": "[parameters('webappname')]",
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2020-12-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/appServicePlan1')]": "Resource",
+                "displayName": "[parameters('webappname')]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('appserplan'))]"
+            ],
+
+            "properties": {
+                "name": "[parameters('webappname')]",
+
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('appserplan'))]",
+                "siteConfig": {
+                "windowsFxVersion":"Node 14 LTS"                  
+                    
+                }
+
+
+
+
+            }
+        }
+
+    ],
+  "outputs": {} 
+}
